@@ -1,0 +1,424 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-image: url(../resources/form\ bg\ img.jpg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.brand-heading {
+  position: absolute;
+  top: 9px;
+  left: 12px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  z-index: 10;
+}
+
+    input::placeholder {
+      color: #4038D4;   
+      opacity: 38%;
+      font-weight: 600;
+      font-size: 13px;
+      padding-left: 8px;
+    }
+
+.container {
+  width: 850px;
+  background: white;
+  border-radius: 30px;
+  padding: 40px 50px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.section-title {
+  font-size: 21px;
+  font-weight: 600;
+  margin: 30px 0 20px;
+  color: #3c29ff;
+}
+
+/* Steps Header */
+.steps {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: 600;
+  color: #3c29ff;
+}
+
+.steps p:first-child {
+  font-size: 18px;
+  color: #3F37D2;
+}
+
+.step-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 18px;
+  position: relative;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: #999;
+  position: relative;
+  z-index: 1;
+}
+
+.step-circle {
+  width: 28px;
+  height: 28px;
+  background-color: #ccc;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.step.active .step-circle {
+  background-color: #3c29ff;
+}
+
+.step.active {
+  color: #3c29ff;
+  font-weight: bold;
+}
+
+.line {
+  position: absolute;
+  top: 13px;
+  left: 14%;
+  right: 14%;
+  height: 2px;
+  background-color: #ccc;
+  z-index: 0;
+}
+
+/* Skills Grid */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.skill-pair {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 22%;
+}
+
+.skill-pair input {
+  background: #f2eded;
+  border-radius: 19px;
+  border: 1px solid white;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4038D4;
+  padding: 10px 14px;
+}
+
+/* Experience Layout */
+.experience-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.exp-input,
+.exp-duration {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.exp-input label,
+.exp-duration label {
+  color: #3F37D2;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.exp-input input {
+  background: #f2eded;
+  border-radius: 19px;
+  border: 1px solid white;
+  font-size: 13px;
+  font-weight: 600;
+  color: #4038D4;
+  padding: 10px 14px;
+}
+
+.exp-duration .duration-inputs {
+  display: flex;
+  gap: 10px;
+}
+
+.exp-duration input {
+  flex: 1;
+  background: #f2eded;
+  border-radius: 19px;
+  border: 1px solid white;
+  font-size: 8px;
+  font-weight: 600;
+  color: #4038D4;
+  padding: 10px 14px;
+}
+
+/* Button */
+.save-btn {
+  width: 100%;
+  padding: 14px;
+  background-color: #3c29ff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.save-btn:hover {
+  background-color: #2b1bd9;
+}
+
+
+/* Animations  */
+
+/* === Animations === */
+@keyframes fadeSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Apply animation to container */
+.container {
+  animation: fadeSlideIn 0.8s ease-out;
+}
+
+/* Animate step circles */
+.step {
+  transform: scale(0.9);
+  opacity: 0;
+  animation: bounceIn 0.4s forwards;
+  animation-delay: 0.4s;
+}
+
+/* Staggered animation for skills */
+.skill-pair {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease-out forwards;
+}
+.skill-pair:nth-child(1) { animation-delay: 0.5s; }
+.skill-pair:nth-child(2) { animation-delay: 0.6s; }
+.skill-pair:nth-child(3) { animation-delay: 0.7s; }
+.skill-pair:nth-child(4) { animation-delay: 0.8s; }
+
+/* Animate experience rows */
+.experience-row {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease-out forwards;
+}
+.experience-row:nth-of-type(2) { animation-delay: 1s; }
+.experience-row:nth-of-type(3) { animation-delay: 1.2s; }
+.experience-row:nth-of-type(4) { animation-delay: 1.4s; }
+
+/* Button hover effect */
+.save-btn {
+  transition: all 0.3s ease;
+}
+
+.save-btn:hover {
+  transform: scale(1.03);
+}
+
+
+/* === Responsive Media Queries === */
+
+/* For screens 1024px and below */
+@media (max-width: 1024px) {
+  .container {
+    width: 90%;
+    padding: 30px;
+  }
+
+  .skill-pair {
+    width: 45%;
+  }
+}
+
+/* For screens 850px and below */
+@media (max-width: 850px) {
+  .skill-pair {
+    width: 100%;
+  }
+
+  .step-indicators {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .experience-row {
+    flex-direction: column;
+  }
+
+  .exp-duration .duration-inputs {
+    flex-direction: column;
+  }
+
+  .brand-heading {
+    font-size: 18px;
+    top: 12px;
+    left: 12px;
+  }
+}
+
+/* For screens 768px and below */
+@media (max-width: 768px) {
+  .container {
+    padding: 25px;
+  }
+
+  .section-title {
+    font-size: 18px;
+    margin: 20px 0 15px;
+  }
+
+  .step-circle {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+  }
+
+  .line {
+    left: 10%;
+    right: 10%;
+  }
+}
+
+/* For screens 600px and below */
+@media (max-width: 600px) {
+  .step-indicators {
+    gap: 10px;
+    flex-direction: column;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .save-btn {
+    font-size: 14px;
+    padding: 12px;
+  }
+}
+
+/* For screens 431px and below */
+@media (max-width: 431px) {
+  .container {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .skill-pair input,
+  .exp-input input,
+  .exp-duration input {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+
+  .section-title {
+    font-size: 16px;
+  }
+
+  .step-circle {
+    width: 22px;
+    height: 22px;
+    font-size: 11px;
+  }
+
+  .brand-heading {
+    font-size: 16px;
+  }
+}
+
+/* For very small screens like 361px and below */
+@media (max-width: 361px) {
+  .container {
+    padding: 16px;
+  }
+
+  .step p {
+    font-size: 10px;
+  }
+
+  .step-circle {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+  }
+
+  .save-btn {
+    font-size: 13px;
+    padding: 10px;
+  }
+
+  .section-title {
+    font-size: 15px;
+  }
+}
+

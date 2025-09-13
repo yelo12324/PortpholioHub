@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="profile/profile.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/e674bba739.js" crossorigin="anonymous"></script>
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <span class="qq">Welcome</span>
+            <ul>
+                    <!-- <li><a href="../index.html">Home</a></li> -->
+                    <li><a href="#about">About</a></li>
+                    <!-- <li><a href="#services">Services</a></li> -->
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fas fa-times"></i>
+                 </ul> 
+                <!-- <i class="fas fa-bars"></i> -->
+            </nav>
+
+            <div class="header-text">
+                <p><span class="role" id="typer"> </p>
+                <h1>Hi, I'm <span class="fullName"></span><br> from  Jhansi</h1>
+                <img src=""  alt="">
+            </div>
+            <div id="resume-btn">
+                <a href="" download class="btn btn2">Download Resume</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cursor -->
+    <div id="cursor"></div>
+    <div id="cursorblur"></div>
+
+    <!-- ----------ABOUT---------- -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+             <div class="about-col-1" data-aos="fade-right">
+                    <img src="">
+                </div>
+                <div class="about-col-2" data-aos="fade-left">
+                    <h1 class="sub-title">About Me</h1>
+                    <p> </p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="openTab('skills', event)">Skills</p>
+                        <p class="tab-links" onclick="openTab('experience', event)">Experience</p>
+                        <p class="tab-links" onclick="openTab('education',event)">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span></span><br></li>
+                            <li><span></span><br></li>
+                            <li><span></span><br></li>
+                            <li><span></span></br></li>
+                               
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="experience">
+                        <ul>
+                            <li><span></span><br></li>
+                            <li><span></span><br></li>
+                            <li><span></span><br></li>
+                         </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span></span><br> </li>
+                            <li><span></span><br></li>
+                            <li><span></span><br></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------SERVICES---------- -->
+    <!-- <section id="services">
+    <div class="container">
+      <h1 class="sub-title" data-aos="zoom-in">What I Offer</h1>
+      <div class="services-list">
+        <div data-aos="flip-left">
+          <i class="fa-solid fa-video"></i>
+          <h2>Video Editing</h2>
+          <p>Captivating stories from raw clips using VN & Capcut Pro with cinematic touch.</p>
+          <a href="https://www.linkedin.com/in/rashidx17/">Explore More</a>
+        </div>
+        <div data-aos="flip-up">
+          <i class="fa-solid fa-code"></i>
+          <h2>Frontend Development</h2>
+          <p>Beautiful, mobile-first designs using HTML, CSS, and JavaScript.</p>
+          <a href="https://www.linkedin.com/in/rashidx17/">Explore More</a>
+        </div>
+        <div data-aos="flip-right">
+          <i class="fa-solid fa-hashtag"></i>
+          <h2>Social Media</h2>
+          <p>Engaging content creation and branding strategies tailored for modern platforms.</p>
+          <a href="https://www.linkedin.com/in/rashidx17/">Explore More</a>
+        </div>
+      </div>
+    </div>
+  </section> -->
+    <!-- ----------PORTFOLIO--------- -->
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Works</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="" alt="image not found">
+                    <div class="layer">
+                        <h2></h2>
+                        <p></p>
+                        <a href=""><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="" alt="image not found">
+                    <div class="layer">
+                        <h2></h2>
+                        <p></p>
+                        <a href=""><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="" alt="Coming soon">
+                    <div class="layer">
+                        <h2></h2>
+                        <p></p>
+                        <a href=""><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <a href="" class="btn">See more</a>
+        </div>
+    </div>
+
+    <!-- ----------CONTACT---------- -->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fas fa-paper-plane"></i> </p>
+                    <p><i class="fas fa-phone-square-alt"></i>+91 </p>
+                    <div class="social-icons">
+                        <a href=""><i class="fab fa-facebook"></i></a>
+                        <a href=""><i class="fab fa-twitter-square"></i></a>
+                        <a href=""><i class="fab fa-instagram"></i></a>
+                        <a href=""><i class="fab fa-linkedin"></i></a>
+                    </div>
+                    <a href="" download class="btn btn2">Download Resume</a>
+                </div>
+                <div class="contact-right">
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="5316876f-8f78-4cfb-9446-9d42bf567517">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn btn3">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>copyright @Vedseem Info Tech Pvt Ltd<i class="fas fa-heart"></i> by </p>
+        </div>
+    </div>
+<!-- SCRIPTS -->
+  <!-- <script src="profile.js"></script> -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init({ once: true, duration: 1000 });</script>
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <div id="alertBox" class="alert" style="display: none;"></div>
+    <script>
+    // ======================================================
+    //               REUSABLE DISPLAY FUNCTION
+    // ======================================================
+    function populateProfile(data) {
+        if (!data) {
+            document.body.innerHTML = "<h1>Portfolio not found or is incomplete.</h1>";
+            return;
+        }
+
+        // Full Name & Header Text
+        const headerTextH1 = document.querySelector('.header-text h1');
+        if (headerTextH1 && data.fullName && data.city) {
+            headerTextH1.innerHTML = `Hi, I'm <span class="fullName">${data.fullName}</span><br> from ${data.city}`;
+        }
+
+        // Role
+        document.getElementById('typer').textContent = data.role || '';
+
+        // Profile Photos
+        if (data.photo) {
+            document.querySelector('.header-text img').src = data.photo;
+            document.querySelector('.about-col-1 img').src = data.photo;
+        }
+
+        // Resume Links
+        if (data.resume) {
+            document.querySelector('#resume-btn a').href = data.resume;
+            document.querySelector('#contact .contact-left a.btn2').href = data.resume;
+        }
+
+        // About Me Text
+        document.querySelector('#about .about-col-2 p').textContent = data.aboutMe || '';
+
+        // Skills
+        const skillsList = document.querySelector('#skills ul');
+        if (skillsList && Array.isArray(data.skills)) {
+            skillsList.innerHTML = data.skills.map(skill => 
+                `<li><span>${skill.name || skill}</span><br>${skill.description || ''}</li>`
+            ).join('');
+        }
+
+        // Experience
+        const expList = document.querySelector('#experience ul');
+        if (expList && Array.isArray(data.experience)) {
+            expList.innerHTML = data.experience.map(exp => 
+                `<li><span>${exp.start} - ${exp.end}</span><br>${exp.role} at ${exp.company}</li>`
+            ).join('');
+        }
+
+        // Education
+        const eduList = document.querySelector('#education ul');
+        if (eduList && Array.isArray(data.education)) {
+            eduList.innerHTML = data.education.map(edu => 
+                `<li><span>${edu.year}</span><br>${edu.degree} at ${edu.college}</li>`
+            ).join('');
+        }
+
+        // Projects (My Works)
+        const workList = document.querySelector('.work-list');
+        if (workList && Array.isArray(data.projects)) {
+            workList.innerHTML = data.projects.map(project => `
+                <div class="work">
+                    <img src="${project.photo}" alt="${project.name || 'Project image'}">
+                    <div class="layer">
+                        <h2>${project.name}</h2>
+                        <p>${project.description}</p>
+                        <a href="${project.link}" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Contact Details
+        const contactLeft = document.querySelector('.contact-left');
+        if (contactLeft && data.contactDetails) {
+            const emailP = contactLeft.querySelector('p:nth-child(2)');
+            if (emailP) emailP.innerHTML = `<i class="fas fa-paper-plane"></i>${data.contactDetails.contactEmail || ''}`;
+            
+            const phoneP = contactLeft.querySelector('p:nth-child(3)');
+            if (phoneP) phoneP.innerHTML = `<i class="fas fa-phone-square-alt"></i>${data.contactDetails.phone || ''}`;
+        }
+    }
+
+    // ======================================================
+    //             MAIN LOGIC TO LOAD PROFILE
+    // ======================================================
+    document.addEventListener('DOMContentLoaded', async () => {
+        const params = new URLSearchParams(window.location.search);
+        const portfolioId = params.get('id');
+
+        if (!portfolioId) {
+            document.body.innerHTML = "<h1>No portfolio ID provided.</h1>";
+            return;
+        }
+
+        try {
+            // Fetch the specific profile using the ID from the URL
+            const response = await fetch(`http://localhost:5000/profile/${portfolioId}`);
+            
+            if (!response.ok) {
+                throw new Error('Portfolio could not be loaded.');
+            }
+            
+            const profileData = await response.json();
+            
+            // Use the reusable function to display all the data
+            populateProfile(profileData);
+
+        } catch (err) {
+            console.error('Profile load error:', err);
+            document.body.innerHTML = `<h1>Error: ${err.message}</h1>`;
+        }
+    });
+
+    // ======================================================
+    //             TAB SWITCHING FUNCTIONALITY
+    // ======================================================
+    function openTab(tabName, event) {
+        document.querySelectorAll('.tab-links').forEach(link =>
+            link.classList.remove('active-link')
+        );
+        document.querySelectorAll('.tab-contents').forEach(content =>
+            content.classList.remove('active-tab')
+        );
+        event.currentTarget.classList.add('active-link');
+        document.getElementById(tabName).classList.add('active-tab');
+    }
+</script>
+
+ <!-- <script>
+        // Reusable function to populate the HTML with profile data
+        function populateProfile(data) {
+            // ... (this is the same populateProfile function from the previous answer)
+            // It will take the data object and fill in all the fields on the page.
+            if (!data) {
+                document.body.innerHTML = "<h1>Portfolio not found or is incomplete.</h1>";
+                return;
+            }
+            // Full Name, Role, Photos, Resume, About, Skills, Experience, etc.
+            document.querySelector('.header-text h1').innerHTML = `Hi, I'm <span class="fullName">${data.fullName}</span><br> from ${data.city}`;
+            document.getElementById('typer').textContent = data.role;
+            if (data.photo) {
+                document.querySelector('.header-text img').src = data.photo;
+                document.querySelector('.about-col-1 img').src = data.photo;
+            }
+            if (data.resume) {
+                document.querySelector('#resume-btn a').href = data.resume;
+                document.querySelector('#contact .contact-left a.btn2').href = data.resume;
+            }
+            document.querySelector('#about .about-col-2 p').textContent = data.aboutMe;
+            const skillsList = document.querySelector('#skills ul');
+            if (skillsList && Array.isArray(data.skills)) {
+                skillsList.innerHTML = data.skills.map(skill => `<li><span>${skill.name || skill}</span><br>${skill.description || ''}</li>`).join('');
+            }
+            // ... (add the rest of the population logic for experience, education, projects, etc.)
+        }
+
+        // Main logic to load the profile based on URL
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const portfolioId = params.get('id'); // We'll use 'id' as the parameter name
+
+            if (!portfolioId) {
+                document.body.innerHTML = "<h1>No portfolio ID provided.</h1>";
+                return;
+            }
+
+            try {
+                // Fetch the specific profile using the ID from the URL
+                const response = await fetch(`http://localhost:5000/profile/${portfolioId}`);
+                
+                if (!response.ok) {
+                    throw new Error('Portfolio could not be loaded.');
+                }
+                
+                const profileData = await response.json();
+                
+                // Use the reusable function to display the data
+                populateProfile(profileData);
+
+            } catch (err) {
+                console.error('Profile load error:', err);
+                document.body.innerHTML = `<h1>Error: ${err.message}</h1>`;
+            }
+        });
+    </script>
+ 
+    <script>
+document.addEventListener('DOMContentLoaded', async () => {
+    const token = localStorage.getItem('jwtToken');
+    if (!token) {
+        alert("You must be logged in to view your profile.");
+        return;
+    }
+
+    try {
+        const response = await fetch('http://localhost:5000/profile', {
+           headers: { 'Authorization': `Bearer ${token}` } 
+        });
+        if (!response.ok) {
+            alert("Failed to load profile. Please log in again.");
+            return;
+        }
+        // const data = await response.json();
+         const responseData = await response.json(); // Get the full response { message, data }
+        const data = responseData.data; 
+   if (!data) {
+            alert("Portfolio data is missing. Please create your portfolio first.");
+            return;
+        }
+        // Full Name
+        const fullNameEl = document.querySelector('.fullName');
+        if (fullNameEl && data.fullName) fullNameEl.textContent = data.fullName;
+
+        // Role
+        const roleEl = document.getElementById('typer');
+        if (roleEl && data.role) roleEl.textContent = data.role;
+
+        // City (update in header h1)
+        const headerTextH1 = document.querySelector('.header-text h1');
+        if (headerTextH1 && data.fullName && data.city) {
+            headerTextH1.innerHTML = `Hi, I'm <span class="fullName">${data.fullName}</span><br> from ${data.city}`;
+        }
+
+        // Profile Photo (header image)
+        const headerImg = document.querySelector('.header-text img');
+        if (headerImg && data.photo) headerImg.src = data.photo;
+
+        // Resume Download Button
+        const resumeBtn = document.querySelector('#resume-btn a');
+        if (resumeBtn && data.resume) {
+            resumeBtn.href = data.resume;
+            resumeBtn.textContent = "Download Resume";
+        }
+
+        // About Me about-col-1
+           const aboutImg = document.querySelector('.about-col-1 img');
+        if (aboutImg && data.photo) aboutImg.src = data.photo;
+
+        const aboutMeP = document.querySelector('#about .about-col-2 p');
+        if (aboutMeP && data.aboutMe) aboutMeP.textContent = data.aboutMe;
+
+        // Skills
+        const skillsList = document.querySelector('#skills ul');
+        if (skillsList && data.skills && Array.isArray(data.skills)) {
+            skillsList.innerHTML = '';
+            data.skills.forEach(skill => {
+                skillsList.innerHTML += `<li><span>${skill.name}</span><br>${skill.description}</li>`;
+            });
+        }
+
+        // Experience
+        const expList = document.querySelector('#experience ul');
+        if (expList && data.experience && Array.isArray(data.experience)) {
+            expList.innerHTML = '';
+            data.experience.forEach(exp => {
+                expList.innerHTML += `<li><span>${exp.start} - ${exp.end}</span><br>${exp.role} at ${exp.company}</li>`;
+            });
+        }
+
+        // Education
+        const eduList = document.querySelector('#education ul');
+        if (eduList && data.education && Array.isArray(data.education)) {
+            eduList.innerHTML = '';
+            data.education.forEach(edu => {
+                eduList.innerHTML += `<li><span>${edu.year}</span><br>${edu.degree} at ${edu.college}</li>`;
+            });
+        }
+
+        // Projects (Portfolio)
+        const workList = document.querySelector('.work-list');
+        if (workList && data.projects && Array.isArray(data.projects)) {
+            workList.innerHTML = '';
+            data.projects.forEach(project => {
+                workList.innerHTML += `
+                    <div class="work">
+                        <img src="${project.photo}" alt="image not found">
+                        <div class="layer">
+                            <h2>${project.name}</h2>
+                            <p>${project.description}</p>
+                            <a href="${project.link}"><i class="fas fa-external-link-alt"></i></a>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Contact Details
+        const contactLeft = document.querySelector('.contact-left');
+        if (contactLeft && data.contactDetails) {
+            // Email
+            const emailP = contactLeft.querySelector('p:nth-child(2)');
+            if (emailP && data.contactDetails.contactEmail) {
+                emailP.innerHTML = `<i class="fas fa-paper-plane"></i>${data.contactDetails.contactEmail}`;
+            }
+            // Phone
+            const phoneP = contactLeft.querySelector('p:nth-child(3)');
+            if (phoneP && data.contactDetails.phone) {
+                phoneP.innerHTML = `<i class="fas fa-phone-square-alt"></i>${data.contactDetails.phone}`;
+            }
+            // Social links (update if you want)
+
+            // Download Resume Button in contact section
+            const contactResumeBtn = contactLeft.querySelector('a.btn2');
+            if (contactResumeBtn && data.resume) {
+                contactResumeBtn.href = data.resume;
+                contactResumeBtn.textContent = "Download Resume";
+            }
+        }
+    } catch (err) {
+        alert("Error loading profile. Please try again.");
+        console.error('Profile load error:', err);
+    }
+
+
+    // =============== contact in profile page-------------
+
+     // Contact form logic
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const name = contactForm.elements['Name'].value;
+            const email = contactForm.elements['Email'].value;
+            const message = contactForm.elements['Message'].value;
+
+            // Get userId from profile data
+            const token = localStorage.getItem('jwtToken');
+            const response = await fetch('http://localhost:5000/profile', {
+            headers: { 'Authorization': `Bearer ${token}` } 
+            });
+            const data = await response.json();
+            const userId = data.userId;
+            
+            try {
+                const res = await fetch('http://localhost:5000/send-contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ userId, name, email, message })
+                });
+                const result = await res.json();
+                console.log("Contact form submission response in profile:", result);
+                if (res.ok) {
+                    alert("Your message has been sent!");
+                    contactForm.reset();
+                } else {
+                    alert(result.message || "Failed to send message.");
+                }
+            } catch (err) {
+                alert("Network error. Please try again.");
+            }
+        });
+    }
+
+
+});
+</script> -->
+
+</body>
+
+</html>

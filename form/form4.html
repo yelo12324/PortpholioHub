@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio - Contact Details</title>
+  <link rel="stylesheet" href="form4.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <a href="../index.html" class="brand-heading">PortpholioHub</a>
+
+  <div class="container">
+    <!-- Steps Header -->
+    <div class="steps">
+      <p><strong>MAKE YOUR PORTFOLIO</strong></p>
+      <div class="step-indicators">
+        <div class="line"></div>
+        <div class="step">
+          <div class="step-circle">1</div>
+          Basic Details
+        </div>
+        <div class="step">
+          <div class="step-circle">2</div>
+          Skill & Experience
+        </div>
+        <div class="step active">
+          <div class="step-circle">3</div>
+          Contact Details
+        </div>
+      </div>
+    </div>
+
+    <!-- Form -->
+    <form id="contactForm" novalidate>
+      <div class="section-title">Contact Details</div>
+
+      <div class="contact-row">
+        <div class="contact-input">
+          <label>Phone no.</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter 10-digit Mobile Number" pattern="[0-9]{10}" maxlength="10" required />
+        </div>
+        <div class="contact-input">
+          <label>E-mail</label>
+          <input type="email" id="email" name="email" placeholder="Type Here..." required />
+        </div>
+      </div>
+
+      <div class="social-input">
+        <label>GitHub</label>
+        <div class="input-wrapper">
+          <img src="https://img.icons8.com/ios-glyphs/20/3c29ff/link.png" />
+          <input type="url" name="github" placeholder="Add Link" />
+        </div>
+      </div>
+
+      <div class="social-input">
+        <label>LinkedIn</label>
+        <div class="input-wrapper">
+          <img src="https://img.icons8.com/ios-glyphs/20/3c29ff/link.png" />
+          <input type="url" name="linkedin" placeholder="Add Link" />
+        </div>
+      </div>
+
+      <div class="social-input">
+        <label>Instagram</label>
+        <div class="input-wrapper">
+          <img src="https://img.icons8.com/ios-glyphs/20/3c29ff/link.png" />
+          <input type="url" name="instagram" placeholder="Add Link" />
+        </div>
+      </div>
+
+      <div class="social-input">
+        <label>Facebook</label>
+        <div class="input-wrapper">
+          <img src="https://img.icons8.com/ios-glyphs/20/3c29ff/link.png" />
+          <input type="url" name="facebook" placeholder="Add Link" />
+        </div>
+      </div>
+
+      <button type="submit" class="save-btn">Submit</button>
+
+
+    </form>
+    <div id="alertBox" class="alert" style="display:none;"></div>
+  </div>
+<!-- <script src="form4.js"></script> -->
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = contactForm.querySelector('.save-btn');
+    const alertBox = document.getElementById('alertBox');
+
+    // Convert Data URL to File object
+    function dataURLtoFile(dataurl, filename) {
+    let arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    while(n--) u8arr[n] = bstr.charCodeAt(n);
+    return new File([u8arr], filename, {type:mime});
+}
+
+    function showAlert(message, type = "success") {
+        alertBox.textContent = message;
+        alertBox.className = `alert ${type}`;
+        alertBox.style.display = 'block';
+        setTimeout(() => {
+            alertBox.style.display = 'none';
+        }, 4000);
+    }
+
+
+    contactForm.addEventListener('submit', async (event) => {
+        event.preventDefault(); 
+        
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+            return showAlert('Error: You are not logged in.', 'error');
+        }
+
+        const finalFormData = new FormData(contactForm); 
+
+        const step1Data = JSON.parse(sessionStorage.getItem('portfolioStep1') || '{}');
+        const step2Data = JSON.parse(sessionStorage.getItem('portfolioStep2') || '{}');
+        const step3Data = JSON.parse(sessionStorage.getItem('portfolioStep3') || '{}');
+
+        // Append basic details
+        finalFormData.append('fullName', step1Data.fullName || '');
+        finalFormData.append('role', step1Data.role || '');
+        finalFormData.append('city', step1Data.city || '');
+        finalFormData.append('dob', step1Data.dob || '');
+        finalFormData.append('gender', step1Data.gender || '');
+        finalFormData.append('aboutMe', step1Data.aboutMe || '');
+
+        // Append education, skills, experience, projects
+        finalFormData.append('education', JSON.stringify(step1Data.education || []));
+        finalFormData.append('skills', JSON.stringify(step2Data.skills || []));
+        finalFormData.append('experience', JSON.stringify(step2Data.experience || []));
+        finalFormData.append('projects', JSON.stringify(step3Data.projects || []));
+
+        // Append photo and resume as files
+        if (step1Data.photo) {
+            finalFormData.append('photo', dataURLtoFile(step1Data.photo, "profile.jpg"));
+        }
+        if (step1Data.resume) {
+            finalFormData.append('resume', dataURLtoFile(step1Data.resume, "resume.pdf"));
+        }
+         if (step3Data.projects && step3Data.projects[0]?.photo) {
+        finalFormData.append('projectPhoto1', dataURLtoFile(step3Data.projects[0].photo, "project1.jpg"));
+    }
+    if (step3Data.projects && step3Data.projects[1]?.photo) {
+        finalFormData.append('projectPhoto2', dataURLtoFile(step3Data.projects[1].photo, "project2.jpg"));
+    }
+    if (step3Data.projects && step3Data.projects[2]?.photo) {
+        finalFormData.append('projectPhoto3', dataURLtoFile(step3Data.projects[2].photo, "project3.jpg"));
+    }
+
+        for (let i = 1; i <= 3; i++) {
+            const photoInput = document.getElementById(`photo${i}`);
+            if (photoInput && photoInput.files[0]) {
+                finalFormData.append(`projectPhoto${i}`, photoInput.files[0]);
+            }
+        }
+
+        try {
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+
+            const response = await fetch('http://localhost:5000/forms', {
+                method: 'POST',
+                body: finalFormData,
+                  credentials: 'include',
+                headers: { Authorization: `Bearer ${token}` } ,
+            });
+
+            const result = await response.json();
+            console.log("Final submission response in form4:", result);
+            if (response.ok) {
+                showAlert('Portfolio created successfully!', 'success');
+                sessionStorage.clear();
+                setTimeout(() => {
+                   window.location.href = '../index.html';
+                }, 2000);
+            } else {
+                showAlert(result.message || 'An error occurred.', 'error');
+            }
+
+        } catch (error) {
+            console.error("Final submission error:", error);
+            showAlert("A network error occurred. Please check the console.", "error");
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Submit Portfolio';
+        }
+    });
+});
+
+ </script>
+
+</body>
+</html>

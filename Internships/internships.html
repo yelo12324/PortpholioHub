@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Internships</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="internships.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a class="logo" href="../index.html" aria-label="Portfolio Hub Home">
+        <img src="../resources/logo.png" alt="Portfolio Hub" />
+      </a>
+      <div class="spacer"></div>
+      <nav class="nav-buttons" aria-label="Primary">
+        <a href="../index.html" class="btn">HOME</a>
+        <a href="../contact/contact.html" class="btn btn--filled">CONTACT US</a>
+      </nav>
+      <button id="menuBtn" class="hamburger" aria-label="Open filters" aria-controls="filters" aria-expanded="false">
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Overlay for drawer -->
+  <div id="drawerOverlay" class="drawer-overlay" hidden></div>
+
+  <main>
+    <div class="container">
+      <!-- Filters (single source of truth — becomes a drawer on small screens) -->
+      <div id="filters" class="filters" role="region" aria-label="Filters">
+        <div class="drawer-header">
+          <div class="drawer-title">Filters</div>
+          <button id="closeDrawer" class="drawer-close" aria-label="Close filters">Close</button>
+        </div>
+        <select id="workType" aria-label="Work type">
+          <option value="">Work type</option>
+          <option>Remote</option>
+          <option>Hybrid</option>
+          <option>Onsite</option>
+        </select>
+        <select id="experience" aria-label="Experience">
+          <option value="">Experience</option>
+          <option>Fresher</option>
+          <option>Intermediate</option>
+          <option>Expert</option>
+        </select>
+        <select id="role" aria-label="Role">
+          <option value="">Role</option>
+          <option>UI/UX Designer</option>
+          <option>Data Analyst</option>
+          <option>Developer</option>
+        </select>
+        <select id="stipend" aria-label="Salary">
+          <option value="">Salary</option>
+          <option>2000 and below</option>
+          <option>5000 and below</option>
+          <option>10000 and below</option>
+          <option>More than 10000</option>
+        </select>
+        <select id="duration" aria-label="Duration">
+          <option value="">Duration</option>
+          <option>1 month</option>
+          <option>2 months</option>
+          <option>3 months</option>
+          <option>4 months</option>
+          <option>5 months</option>
+          <option>6 months</option>
+          <option>7 months</option>
+          <option>8 months</option>
+          <option>9 months</option>
+          <option>10 months</option>
+          <option>11 months</option>
+          <option>12 months</option>
+        </select>
+      </div>
+
+      <!-- Job Listings -->
+
+    <div  id="jobDetails" class="card-wrap">
+
+
+      <section class="card">
+        <h1>UI/UX Designer for Mobile App</h1>
+        <p class="desc">
+        </p>
+
+        <div class="metrics">
+          <div class="metric">
+            <div class="value"></div>
+            <div class="label"> </div>
+          </div>
+          <div class="metric">
+            <div class="value"></div>
+            <div class="label"></div>
+          </div>
+          <div class="metric">
+            <div class="value"></div>
+            <div class="label"></div>
+          </div>
+          <div class="metric">
+            <div class="value"></div>
+            <div class="label"> </div>
+          </div>
+          <div class="metric">
+            <div class="value"></div>
+            <div class="label"> </div>
+          </div>
+          <div class="metric">
+            <div class="value"></div>
+            <div class="label"></div>
+          </div>
+        </div>
+
+        <div class="skills">
+          <h3></h3>
+          <div class="chips">
+            <span class="chip"></span>
+            <span class="chip"> </span>
+            <span class="chip"></span>
+            <span class="chip"></span>
+          </div>
+        </div>
+
+        <div class="cta">
+          <button class="apply">Apply Now</button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+
+  <script src="internships.js"></script>
+</body>
+</html>
