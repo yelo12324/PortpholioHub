@@ -147,6 +147,10 @@ const authenticateIntern = async(req, res, next) => {
   }
 };
 
+app.get('/',(req,res)=>{
+  res.send(" BACKEND IS RUNNING...🏃‍♂️‍➡️👌");
+})
+
 app.get('/intern-signup', (req,res)=> {
     res.send("Intern signup sucessfull");
 })
@@ -917,4 +921,5 @@ app.post('/myWork', (req, res) => {
 // ===================================================
 
 const PORT = 5000;
+
 app.listen(PORT, () => console.log(`✅ Server is running on http://localhost:${PORT}`));
