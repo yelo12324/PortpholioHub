@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="contact.css" />
+</head>
+<body>
+  <div class="page">
+    <header>
+<a id="logo" href="../index.html">
+  <img src="../resources/logo.png" alt="PortfolioHub Logo">
+</a>
+      <nav>
+        <a href="#" class="active">Home</a>
+        <a href="#">Faqs</a>
+      </nav>
+    </header>
+
+    <div class="content">
+      <div class="left">
+        <img src="image.png" alt="Support agent" />
+        <div class="email">
+          <span><i class="ri-mail-fill"></i></span> info@portfoliohub.com
+        </div>
+      </div>
+
+    
+      <div class="right">
+        <h2 class="title">Get in touch</h2>
+        <div class="sub-title">
+          <h3>Send a Message</h3>
+          <p>Not sure where to start? Our team is ready to guide and support you.</p>
+        </div>
+        <form id="contact-form">
+          <div class="row">
+            <input type="text" placeholder="Name" name="name" required />
+            <input type="email" placeholder="Email Address" name="email" required />
+          </div>
+          <div class="row">
+            <input type="text" placeholder="Subject" name="subject" required />
+            <input type="tel" placeholder="Phone Number" name="phoneNumber" required />
+          </div>
+          <textarea rows="4" placeholder="Message" name="message" required></textarea>
+          <button type="submit">→ Submit</button>
+        </form>                         
+        </div>
+    </div>
+  </div>
+  <script src="contact.js"></script>
+  <script>
+    // Animation trigger
+    window.onload = () => {
+      document.querySelector(".content").classList.add("fade-in");
+    };
+  </script>
+</body>
+</html>
+
