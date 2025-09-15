@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
+  <!-- Font Awesome for icons -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"
+    rel="stylesheet"
+/>
+<body>
+  <div id="container">
+    <div id="form-side">
+      <a id="logo" href="../index.html">
+  <img src="../resources/logo.png" alt="PortfolioHub Logo">
+</a>
+
+      <h4>Start your journey</h4>
+      <h2>Login to PortfolioHub</h2>
+
+      <form id="loginForm">
+        <label for="email">E-mail</label>
+        <div class="input-group">
+          <input type="email" id="email" name="email" required placeholder="example@email.com" />
+          <span class="icon"><i class="ri-mail-unread-line"></i></span>
+        </div>
+
+        <label for="password">Password</label>
+        <div class="input-group">
+          <input type="password" id="password" name="password" required placeholder="********" />
+          <span class="icon"><i class="ri-eye-fill"></i></span>
+        </div>
+
+        <button type="submit"  id="login-btn">Login</button>
+
+        <div id="divider">or login with</div>
+
+        <div id="social-buttons">
+          <button id="github"><i class="ri-github-fill"></i></button>
+          <button id="google"><i class="ri-google-fill"></i></button>
+          <button id="mobile"><i class="ri-smartphone-line"></i></button>
+        </div>
+
+        <p id="signin-link">Don't have an account? <a href="../intern signup/intern-signup.html">Sign up</a></p>
+        <p id="signin-link">Forgot Password <a href="#">Click Here</a></p>
+      </form>
+    </div>
+
+    <div id="image-side"></div>
+  </div>
+ <div id="message"></div>
+  <script src="login.js"></script>
+</body>
+</html>
