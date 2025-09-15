@@ -1,0 +1,314 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+#page-wrapper {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Left Side */
+#form-side {
+  width: 60%;
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: white;
+  animation: fadeInLeft 1s ease;
+}
+
+#logo {
+  display: inline-block;
+  margin-bottom: 40px;
+}
+
+#logo img {
+  height: 40px;   /* adjust as needed */
+  width: auto;
+  display: block;
+}
+
+
+#recruit{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#form-title {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+#form-subtitle {
+  color: #777;
+  margin-bottom: 30px;
+}
+
+#signup-form {
+  width: 100%;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  font-size: 14px;
+  color: #333;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.password-wrap {
+  position: relative;
+}
+
+.password-wrap i {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+  cursor: pointer;
+}
+
+/* Buttons */
+#register-btn {
+  width: 100%;
+  padding: 12px;
+  background: #2B50AA;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#register-btn:hover {
+  background: #3730a3;
+}
+
+#or-line {
+  text-align: center;
+  margin: 20px 0 10px;
+  color: #aaa;
+  font-size: 14px;
+}
+
+#social-buttons {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#github-btn, #google-btn, #mobile-btn {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ccc;
+  font-size: 18px;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#github-btn:hover {
+  background-color: #7515eb;
+  color: white;
+}
+
+#google-btn:hover {
+  background-color: #db4437;
+  color: white;
+}
+
+#mobile-btn:hover {
+  background-color: #000000;
+  color: white;
+}
+
+#signin-link {
+  font-size: 14px;
+  text-align: center;
+  color: #555;
+}
+
+#signin-link a {
+  color: #4f46e5;
+  text-decoration: none;
+}
+
+#signin-link a:hover {
+  text-decoration: underline;
+}
+
+/* Right Image Side */
+#image-side {
+  flex: 1;
+  background: url('https://images.unsplash.com/photo-1579267217516-b73084bd79a6?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+  background-size: cover;
+  animation: fadeInRight 1s ease;
+  border-left: 1px solid #eee;
+}
+
+/* Animations */
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Prevent scroll */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+
+
+@media (max-width: 768px) {
+  #form-side {
+    padding: 30px 20px;
+  }
+
+  #form-title {
+    font-size: 28px;
+  }
+
+  #form-subtitle {
+    font-size: 14px;
+  }
+
+  #register-btn {
+    font-size: 15px;
+  }
+
+  #social-buttons {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
+
+@media (max-width: 600px) {
+  #form-side {
+    padding: 25px 15px;
+  }
+
+  #brand {
+    font-size: 22px;
+  }
+
+  #form-title {
+    font-size: 26px;
+  }
+
+  #signin-link {
+    font-size: 15px;
+    text-align: center;
+    margin-top: 25px;
+  }
+}
+
+@media (max-width: 430px) {
+  #form-side {
+    padding: 20px 10px;
+  }
+
+  #brand {
+    font-size: 20px;
+  }
+
+  #form-title {
+    font-size: 24px;
+  }
+
+  .form-group input {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #register-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #github-btn, #google-btn, #mobile-btn {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  #signin-link {
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+@media (max-width: 768px) {
+  #image-side {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  #form-side {
+    width: 100%;
+  }
+
+  #page-wrapper {
+    flex-direction: column;
+  }
+}
+
+/* =================== ALERT ===================  */
+
+.alert {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  z-index: 9999;
+  display: none;
+}
+
+.alert.success {
+  background-color: #4caf50;
+  color: white;
+}
+
+.alert.error {
+  background-color: #f44336;
+  color: white;
+}
