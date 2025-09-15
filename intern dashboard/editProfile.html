@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile Page</title>
+    <style>
+      /* General Body Styles */
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        background-color: #f3f4f6;
+        color: #374151;
+        padding: 1rem;
+      }
+      @media (min-width: 768px) {
+        body {
+          padding: 2rem;
+        }
+      }
+
+      /* Layout & Container */
+      .container {
+        max-width: 800px; /* Adjusted for a better vertical view */
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1fr; /* Single vertical column layout */
+        gap: 1.5rem;
+      }
+      .main-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      /* Shared Card Styles */
+      .card {
+        background-color: #ffffff;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        border: 1px solid #e5e7eb;
+        transition: box-shadow 0.3s ease-in-out;
+      }
+      .card:hover {
+        box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
+      }
+      .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .card-header h3 {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #11182c;
+      }
+      .card-header .subtitle {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+      }
+
+      /*  EDUCATION  */
+
+              input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            box-sizing: border-box;
+            color: #374151; /* Ensures text is visible */
+        }
+     .education-entry {
+            border: 1px solid #e5e7eb;
+            border-radius: 0.75rem;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .education-entry .detail-input {
+            margin-bottom: 0.75rem;
+        }
+        .education-entry .date-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+      input[type="tel"],
+      input[type="email"],
+      textarea {
+        width: 100%;
+        border: 1px solid #d1d5db;
+        border-radius: 0.5rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        box-sizing: border-box; /* Important for consistent sizing */
+      }
+      
+      .hidden {
+        display: none !important;
+      }
+
+      /* === Profile Section === */
+      .profile-section {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 1rem;
+      }
+      .profile-image-container {
+        position: relative;
+      }
+      .profile-image {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 9999px;
+        object-fit: cover;
+        border: 2px solid #e5e7eb;
+      }
+      .image-upload-label {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        background-color: #3b82f6;
+        color: white;
+        padding: 0.5rem;
+        border-radius: 9999px;
+        cursor: pointer;
+        box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+          0 1px 2px -1px rgb(0 0 0 / 0.1);
+        transition: background-color 0.2s;
+      }
+      .image-upload-label:hover {
+        background-color: #2563eb;
+      }
+      .profile-details h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .profile-details p {
+        color: #6b7280;
+      }
+      .profile-details .edit-view input {
+        margin-bottom: 0.5rem;
+      }
+
+      /* === About Section === */
+      .about-section h3 {
+        font-weight: 600;
+        color: #1f2937;
+      }
+      .about-section .details {
+        font-size: 0.875rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+      }
+      .about-section .bio {
+        font-size: 0.875rem;
+        color: #374151;
+        margin-top: 0.5rem;
+      }
+      .about-section .edit-view input,
+      .about-section .edit-view textarea {
+        margin-bottom: 0.5rem;
+      }
+
+      /* === Skills Section === */
+      .edit-skill-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      /* === My Work Section === */
+      .work-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .work-item {
+        width: 160px;
+        background-color: #f9fafb;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+        padding: 1rem;
+        border: 1px solid #f3f4f6;
+        position: relative;
+      }
+      .work-item-image-container {
+        height: 6rem;
+        width: 100%;
+        background-color: #e5e7eb;
+        border-radius: 0.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        margin-bottom: 0.75rem;
+      }
+       /* Styles for the new image upload and textarea */
+        .work-item-image-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 8rem;
+            width: 100%;
+            background-color: #f3f4f6;
+            border: 2px  #d1d5db;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            color: #6b7280;
+            font-size: 0.875rem;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+        .work-item-image-upload-label:hover {
+            background-color: #e5e7eb;
+            border-color: #9ca3af;
+        }
+                .hidden-file-input {
+            display: none;
+        }
+        /* textarea {
+            width: 100%;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.875rem;
+            box-sizing: border-box;
+            font-family: inherit;
+            resize: vertical;
+        } */
+
+      /* === Education & Experience Lists === */
+      .experience-item-edit {
+        padding: 1rem;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.75rem;
+        position: relative;
+        margin-bottom: 1.5rem;
+      }
+
+      .experience-item-edit .input-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+      @media (min-width: 768px) {
+        .experience-item-edit .input-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* === Contact Section === */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      @media (min-width: 768px) {
+        .contact-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .contact-item label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        margin-bottom: 0.5rem;
+      }
+
+      /* === Resume Uploader === */
+      .resume-uploader-label {
+        margin-top: 0.75rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 8rem;
+        border: 2px dashed #d1d5db;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: border-color 0.2s, background-color 0.2s;
+      }
+      .resume-uploader-label:hover {
+        border-color: #93c5fd;
+        background-color: #eff6ff;
+      }
+      .resume-filename {
+        margin-top: 0.75rem;
+        padding: 0.5rem;
+        background-color: #f9fafb;
+        border-radius: 0.25rem;
+        font-size: 0.875rem;
+        color: #374151;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="profile-form">
+      <div class="container">
+        <div class="sidebar">
+          <div class="card profile-section" id="profile-section">
+            <div class="profile-image-container">
+              <img
+                src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik0xMiAyQzE3LjUyMjggMiAyMiA2LjQ3NzE1IDIyIDEyQzIyIDE3LjUyMjggMTcuNTIyOCAyMiAxMiAyMkM2LjQ3NzE1IDIyIDIgMTcuNTIyOCAyIDEyQzIgNi40NzcxNSA2LjQ3NzE1IDIgMTIgMlpNMTIgNC4xNjY2N0M3LjY2NjY3IDQuMTY2NjcgNC4xNjY2NyA3LjY2NjY3IDQuMTY2NjcgMTJDNy4xNjY2NyAxNi4zMzMzIDcuNjY2NjcgMTkuODMzMyAxMiAxOS44MzMzQzE2LjMzMzMgMTkuODMzMyAxOS44MzMzIDE2LjMzMzMgMTkuODMzMyAxMkMxOS44MzMzIDcuNjY2NjcgMTYuMzMzMyA0LjE2NjY3IDEyIDQuMTY2NjdaIiBmaWxsPSIjNzA3MDcwIi8+Cjwvc3ZnPgo="
+                alt="Profile Image"
+                class="profile-image"
+                id="profile-img-display"
+              />
+              <label
+                class="image-upload-label"
+                id="profile-img-upload-label"
+                for="profile-img-input"
+                >📷</label
+              >
+              <input
+                type="file"
+                accept="image/*"
+                class="hidden"
+                id="profile-img-input"
+                placeholder="Upload Profile Image"
+              />
+            </div>
+            <div class="profile-details">
+              <div class="edit-view" id="profile-edit-mode">
+                <input type="text" id="profile-name-input" placeholder="Enter Full Name"  />
+                <input
+                  type="text"
+                  id="profile-years-input"
+                  placeholder="Years of Experience"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- ABOUT ME -->
+
+          <div class="card about-section" id="about-section">
+            <div class="card-header">
+              <h3>About Me</h3>
+            </div>
+            <div class="edit-view" id="about-edit-mode">
+              <input
+                type="text"
+                id="about-role-input"
+                placeholder="Your Role"
+              />
+              <textarea
+                id="about-bio-input"
+                rows="4"
+                placeholder="About you"
+              ></textarea
+              >
+            </div>
+          </div>
+
+          <!-- EDUCATION -->
+
+        
+      <div class="card">
+        <div class="card-header">
+            <div>
+                <h3>Education</h3>
+                <p class="subtitle">Your academic background</p>
+            </div>
+        </div>
+        <div id="education-edit-mode">
+            <div id="education-inputs-container">
+                
+                <div class="education-entry">
+                    <input
+                        class="detail-input"
+                        type="text"
+                        value="B.Tech in Computer Science"
+                        placeholder="Degree, Field of Study, School"
+                    />
+                    <div class="date-grid">
+                        <input type="date" value="From" aria-label="Start Date" />
+                        <input type="date" aria-label="End Date" />
+                    </div>
+                </div>
+
+                <div class="education-entry">
+                    <input
+                        class="detail-input"
+                        type="text"
+                        placeholder="Degree, Field of Study, School"
+                    />
+                    <div class="date-grid">
+                        <input type="date" aria-label="Start Date" />
+                        <input type="date" aria-label="End Date" />
+                    </div>
+                </div>
+
+                <div class="education-entry">
+                    <input
+                        class="detail-input"
+                        type="text"
+                        placeholder="Degree, Field of Study, School"
+                    />
+                    <div class="date-grid">
+                        <input type="date" aria-label="Start Date" />
+                        <input type="date" aria-label="End Date" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+          <!-- CONTACT INFORMATION -->
+          
+          <div class="card" id="contact-section">
+            <div class="card-header">
+              <div>
+                <h3>Contact Information</h3>
+                <p class="subtitle">How people can reach you</p>
+              </div>
+            </div>
+            <div class="contact-grid" id="contact-info-container">
+              <div class="contact-item">
+                <label>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.92 14.9 14.9 0 0 0 .36 2.5A1 1 0 0 1 8.7 8.38l-1.34 1.34a16.88 16.88 0 0 0 6.36 6.36l1.34-1.34a1 1 0 0 1 1.41.17 14.9 14.9 0 0 0 2.5.36A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                  Phone Number
+                </label>
+                <input type="tel" />
+              </div>
+              <div class="contact-item">
+                <label>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM22 6l-10 7L2 6"></path>
+                  </svg>
+                  Email Address
+                </label>
+                <input type="email" />
+              </div>
+              <div class="contact-item">
+                <label>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                  </svg>
+                  Instagram
+                </label>
+                <input type="text" />
+              </div>
+              <div class="contact-item">
+                <label>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM6 9H2v12h4V9zm2-3a2 2 0 1 0-4 0 2 2 0 0 0 4 0z"></path>
+                  </svg>
+                  LinkedIn
+                </label>
+                <input type="text"/>
+              </div>
+              <div class="contact-item" style="grid-column: 1 / -1">
+                <label>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                  </svg>
+                  GitHub
+                </label>
+                <input type="text" />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SKILLS -->
+
+        <div class="main-content">
+          <div class="card" id="skills-section">
+            <div class="card-header">
+              <h3>Skills</h3>
+            </div>
+            <div id="skills-edit-mode">
+              <div id="skills-inputs-container">
+                <div class="edit-skill-item">
+                  <input type="text"  placeholder="Enter skill" />
+                </div>
+                <div class="edit-skill-item">
+                  <input
+                    type="text"
+                    placeholder="Enter skill"
+                  />
+                </div>
+                <div class="edit-skill-item">
+                  <input
+                    type="text"
+                    placeholder="Enter skill"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- My Work -->
+
+           <div class="card" id="my-work-section">
+        <div class="card-header">
+            <div>
+                <h3>My Work</h3>
+                <p class="subtitle">Showcase your projects</p>
+            </div>
+        </div>
+        <div class="work-grid" id="work-grid">
+            
+            <div class="work-item">
+                <label class="work-item-image-upload-label" for="work-image-input-1">
+                    Click to upload image
+                    <input type="file" accept="image/*" id="work-image-input-1" class="hidden-file-input">
+                </label>
+                <textarea rows="3" placeholder="Project description..."></textarea>
+            </div>
+
+            <div class="work-item">
+                <label class="work-item-image-upload-label" for="work-image-input-2">
+                    Click to upload image
+                    <input type="file" accept="image/*" id="work-image-input-2" class="hidden-file-input">
+                </label>
+                <textarea rows="3" placeholder="Project description..."></textarea>
+            </div>
+
+            <div class="work-item">
+                <label class="work-item-image-upload-label" for="work-image-input-3">
+                    Click to upload image
+                    <input type="file" accept="image/*" id="work-image-input-3" class="hidden-file-input">
+                </label>
+                <textarea rows="3" placeholder="Project description..."></textarea>
+            </div>
+
+        </div>
+    </div>
+
+
+          <!-- Work expereince  -->
+
+          <div class="card" id="experience-section">
+            <div class="card-header">
+              <div>
+                <h3>Work Experience</h3>
+                <p class="subtitle"></p>
+              </div>
+            </div>
+            <div id="experience-list-container">
+                <div class="experience-item-edit">
+                    <div class="input-grid">
+                        <input type="text" placeholder="Job Role *">
+                        <input type="text" placeholder="Company Name *" value="Innovate Inc.">
+                        <input type="text" placeholder="Start Date" >
+                        <input type="text" placeholder="End Date" >
+                    </div>
+                    <textarea placeholder="Description of your role and achievements..." rows="4"></textarea>
+                </div>
+                 <div class="experience-item-edit">
+                    <div class="input-grid">
+                        <input type="text" placeholder="Job Role *" >
+                        <input type="text" placeholder="Company Name *" >
+                        <input type="text" placeholder="Start Date" >
+                        <input type="text" placeholder="End Date" >
+                    </div>
+                    <textarea placeholder="Description of your role and achievements..." rows="4"></textarea>
+                </div>
+                <div class="experience-item-edit">
+                    <div class="input-grid">
+                        <input type="text" placeholder="Job Role *">
+                        <input type="text" placeholder="Company Name *" >
+                        <input type="text" placeholder="Start Date">
+                        <input type="text" placeholder="End Date" >
+                    </div>
+                    <textarea placeholder="Description of your role and achievements..." rows="4"></textarea>
+                </div>
+            </div>
+          </div>
+
+          <!--  My Resume -->
+
+          <div class="card">
+            <h3>My Resume</h3>
+            <label class="resume-uploader-label" for="resume-input">
+              <span id="resume-label-text"
+                >Click to upload or drag & drop PDF</span
+              >
+            </label>
+            <input
+              type="file"
+              id="resume-input"
+              accept="application/pdf"
+              class="hidden"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+</html>
