@@ -34,7 +34,15 @@ connectDB();
 const app = express();
 const dirname = "C://Users//hp//Downloads//today portfolio-hub";
 // --- Middleware ---
-app.use(cors({ origin: "http://127.0.0.1:5500", credentials: true }));
+
+app.use(cors({
+  origin: [
+    "http://127.0.0.1:5500", // for local testing
+    "https://portpholiohub-frontend.onrender.com" // deployed frontend
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
@@ -923,3 +931,4 @@ app.post('/myWork', (req, res) => {
 const PORT = 5000;
 
 app.listen(PORT, () => console.log(`✅ Server is running on http://localhost:${PORT}`));
+
