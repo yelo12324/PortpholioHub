@@ -81,13 +81,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 // --- NEW: CONDITIONAL REDIRECT LOGIC ---
                 // This checks the 'userType' field from the server's response.
-                setTimeout(() => {
+                    setTimeout(() => {
                     if (result.userType === 'recruiter') {
                         // If the user is a recruiter, redirect to the recruiter page.
-                        window.location.href = "/recruiter-index/recruiter-Index.html";
+                    window.location.href = "/recruiter-Index/recruiter-Index.html"; ;
                     } else {
                         // Otherwise, redirect to the main page (for interns).
-                        window.location.href = '../index.html'; // Or '/'
+                        window.location.href = '/'; 
                     }
                 }, 1500);
                 // --- END OF NEW LOGIC ---
@@ -108,3 +108,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
