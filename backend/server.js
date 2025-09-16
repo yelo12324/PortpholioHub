@@ -22,19 +22,12 @@ const Job = require("./models/postJob.js");
 const applyInternship = require("./models/applyInternship.js");
 const EditProfile = require("./models/editProfile.js");
 const contactEditProfile = require("./models/contactEditProfile.js");
-// const experience = require("./models/experience.js");
-// const about = require("./models/about.js");
-// const education = require("./models/education.js");
-// const skills = require("./models/skills.js");
-// const profile = require("./models/profile.js");
-// const myWork = require("./models/myWork.js"); 
 
 // --- Connect to DB ---
 connectDB();
 const app = express();
 const dirname = "C://Users//hp//Downloads//today portfolio-hub";
 // --- Middleware ---
-
 app.use(cors({
   origin: [
     "http://127.0.0.1:5500", // for local testing
@@ -154,10 +147,6 @@ const authenticateIntern = async(req, res, next) => {
     return res.status(401).json({ message: "Unauthorized" });
   }
 };
-
-app.get('/',(req,res)=>{
-  res.send(" BACKEND IS RUNNING...🏃‍♂️‍➡️👌");
-})
 
 app.get('/intern-signup', (req,res)=> {
     res.send("Intern signup sucessfull");
@@ -468,17 +457,45 @@ app.post('/intern-signup', async (req, res) => {
 // ----------------- Login Route ----------------
 // ==============================================
 
-app.post('/login', async(req, res) => {
+app.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
-        const user = await UserIntern.findOne({ email });
-        if (!user) return res.status(401).json({ message: 'Invalid credentials.' });
+        
+        let user = await UserIntern.findOne({ email });
+        let userType = 'intern';
+                console.log(`Login attempt for email: ${email}`);
+
+        if (!user) {
+            user = await UserRecruiter.findOne({ email });
+            userType = 'recruiter';
+        }
+
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid credentials.' });
+        }
+        
+        console.log(`User found in database as a '${userType}'. Comparing password...`);
+
+
         const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) return res.status(401).json({ message: 'Invalid credentials.' });
+ 
+        if (!isMatch) {      
+            console.log(`Login Failed: Password does not match for user ${email}.`);
+            return res.status(401).json({ message: 'Invalid credentials.' });
+        }
+
         const payload = { id: user._id, username: user.username };
         const token = jwt.sign(payload, jwtOptions.secretOrKey, { expiresIn: '1d' });
-        return res.status(200).json({ success: true, message: "Login successful!", token: token });
+        
+        return res.status(200).json({ 
+            success: true, 
+            message: "Login successful!", 
+            token: token,
+            userType: userType 
+        });
+
     } catch (error) {
+        console.error("Login error:", error);
         res.status(500).json({ message: 'Server error.' });
     }
 });
@@ -929,6 +946,4 @@ app.post('/myWork', (req, res) => {
 // ===================================================
 
 const PORT = 5000;
-
 app.listen(PORT, () => console.log(`✅ Server is running on http://localhost:${PORT}`));
-
