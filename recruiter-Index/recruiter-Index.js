@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (window.confirm("Do you want to logout from PortfolioHub?")) 
       {     
         localStorage.removeItem('recruiterToken');
-        window.location.href = "recruiter-index.html";
+        window.location.href = "recruiter-Index.html";
       }
         
     });
