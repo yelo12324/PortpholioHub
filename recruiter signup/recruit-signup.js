@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem('recruiterToken', result.token);
                 console.log('Token saved to localStorage:', result.token);
                 setTimeout(() => {
-                    window.location.href = "/recruiter-index/recruiter-Index.html"; ;
+                    window.location.href = "/recruiter-Index/recruiter-Index.html"; ;
                 }, 2000);
 
             } else {
@@ -96,4 +96,5 @@ document.addEventListener('DOMContentLoaded', () => {
             registerBtn.textContent = 'Register as Recruiter';
         }
     });
+
 });
