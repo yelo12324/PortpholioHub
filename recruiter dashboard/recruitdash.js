@@ -275,8 +275,8 @@ const pages = {
 // changed
 function initCharts(jobDataByMonth = [], applicantStatusCounts = { accepted: 0, rejected: 0, underReview: 0 }) {
   // Destroy existing charts before creating new ones to prevent conflicts
-  if (myBarChart) myBarChart.destroy();
-  if (myPieChart) myPieChart.destroy();
+  // if (myBarChart) myBarChart.destroy();
+  // if (myPieChart) myPieChart.destroy();
 
   // --- Bar Chart for Job Postings ---
   const barCtx = document.getElementById('barChart')?.getContext('2d');
@@ -969,5 +969,6 @@ if (e.target.classList.contains("edit-btn")) {
 }
 
 });
+
 
 
