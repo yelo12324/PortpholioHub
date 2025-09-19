@@ -418,7 +418,7 @@ async function loadApplicants() {
     });
 
     if (!res.ok) {
-      throw new Error("Failed to fetch applicants.");
+      throw new Error("No Applicants Applied To Your Job.");
     }
     
     const applications = await res.json();
@@ -895,5 +895,6 @@ if (e.target.classList.contains("edit-btn")) {
 }
 
 });
+
 
 
