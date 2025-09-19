@@ -370,12 +370,14 @@ async function initializeDashboard() {
   const token = localStorage.getItem("jwtToken"); // ✅ Standardized token
   if (!token) {
     console.error("No token found. Cannot load dashboard.");
+
+    initCharts([], { accepted: 0, rejected: 0, underReview: 0 });
     return;
   }
 
   try {
     // --- Fetch Jobs for Bar Chart and Stats ---
-    const jobsRes = await fetch("https://portpholiohub.onrender.com/jobs", {
+    const jobsRes = await fetch("https://portpholiohub.onrender.com/recruiter/jobs", {
       headers: { "Authorization": `Bearer ${token}` }
     });
     if (!jobsRes.ok) throw new Error("Failed to fetch jobs.");
@@ -969,7 +971,3 @@ if (e.target.classList.contains("edit-btn")) {
 }
 
 });
-
-
-
-
