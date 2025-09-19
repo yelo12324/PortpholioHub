@@ -194,9 +194,9 @@ grid.addEventListener('click', function(event) {
           }
 
           const portfolioId = event.target.dataset.portfolioId;
-          if (portfolioId) {
-               // Corrected the key to be more descriptive
-               window.location.href = `/portfolio-viewer/portfolio-viewer.html?portfolioId=${portfolioId}`;
+          if (portfolioId) { 
+               // this line change on 19 sep 25
+               window.location.href = `../portfolio-viewer/portfolio-viewer.html?portfolioId=${portfolioId}`;
           }
      }
 });
@@ -284,3 +284,4 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
           });
 });
+
