@@ -292,7 +292,7 @@ function initCharts(jobDataByMonth = [], applicantStatusCounts = { accepted: 0, 
         plugins: { legend: { display: false } },
         scales: { y: { beginAtZero: true, ticks: { stepSize: 1 }, max: maxDataValue + 2 } },
         responsive: true,
-        maintainAspectRatio: false
+        // maintainAspectRatio: false
       }
     });
   }
@@ -313,7 +313,7 @@ function initCharts(jobDataByMonth = [], applicantStatusCounts = { accepted: 0, 
       options: {
         plugins: { legend: { position: 'bottom' } },
         responsive: true,
-        maintainAspectRatio: false
+        // maintainAspectRatio: false
       }
     });
   }
@@ -969,6 +969,7 @@ if (e.target.classList.contains("edit-btn")) {
 }
 
 });
+
 
 
 
