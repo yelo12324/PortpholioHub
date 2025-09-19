@@ -3,98 +3,98 @@ const hamburger = document.getElementById('hamburger');
 const navLinks = document.getElementById('nav-links');
 
 if (hamburger && navLinks) {
-  hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-  });
+     hamburger.addEventListener('click', () => {
+          navLinks.classList.toggle('active');
+     });
 }
 
 // Intersection Observer to add 'in-view' class on scroll
 const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-    }
-  });
+     entries.forEach(entry => {
+          if (entry.isIntersecting) {
+               entry.target.classList.add('in-view');
+          }
+     });
 }, {
-  threshold: 0.2
+     threshold: 0.2
 });
 
 if (document.querySelectorAll('.hiw-step')) {
-  document.querySelectorAll('.hiw-step').forEach(step => {
-    observer.observe(step);
-  });
+     document.querySelectorAll('.hiw-step').forEach(step => {
+          observer.observe(step);
+     });
 }
 
 // Dropdown toggle logic
 if (document.querySelectorAll('.dropdown > button')) {
-  document.querySelectorAll('.dropdown > button').forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.stopPropagation();
-      document.querySelectorAll('.dropdown-content').forEach(menu => {
-        if (menu !== button.nextElementSibling) menu.style.display = 'none';
-      });
-      const dropdownMenu = button.nextElementSibling;
-      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
-    });
-  });
+     document.querySelectorAll('.dropdown > button').forEach(button => {
+          button.addEventListener('click', (e) => {
+               e.stopPropagation();
+               document.querySelectorAll('.dropdown-content').forEach(menu => {
+                    if (menu !== button.nextElementSibling) menu.style.display = 'none';
+               });
+               const dropdownMenu = button.nextElementSibling;
+               dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+          });
+     });
 }
 
 document.addEventListener('click', () => {
-  document.querySelectorAll('.dropdown-content').forEach(menu => {
-    menu.style.display = 'none';
-  });
+     document.querySelectorAll('.dropdown-content').forEach(menu => {
+          menu.style.display = 'none';
+     });
 });
 
 // Pagination active state
 if (document.querySelector('.pagination')) {
-  document.querySelectorAll('.pagination a').forEach(button => {
-    button.addEventListener('click', () => {
-      document.querySelectorAll('.pagination a').forEach(btn => btn.classList.remove('active'));
-      button.classList.add('active');
-    });
-  });
+     document.querySelectorAll('.pagination a').forEach(button => {
+          button.addEventListener('click', () => {
+               document.querySelectorAll('.pagination a').forEach(btn => btn.classList.remove('active'));
+               button.classList.add('active');
+          });
+     });
 }
 
 if (document.querySelector('.filters')) {
-  document.querySelector('.filters').addEventListener('click', function(e) {
-    if (window.innerWidth <= 660 && e.target === this) {
-      this.classList.toggle('show');
-    }
-  });
+     document.querySelector('.filters').addEventListener('click', function(e) {
+          if (window.innerWidth <= 660 && e.target === this) {
+               this.classList.toggle('show');
+          }
+     });
 }
 
 (function () {
-  const scrollObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        scrollObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
+     const scrollObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+               if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    scrollObserver.unobserve(entry.target);
+               }
+          });
+     }, {
+          threshold: 0.1
+     });
 
-  if (document.querySelectorAll('.animate-on-scroll')) {
-    document.querySelectorAll('.animate-on-scroll').forEach((el) => scrollObserver.observe(el));
-  }
+     if (document.querySelectorAll('.animate-on-scroll')) {
+          document.querySelectorAll('.animate-on-scroll').forEach((el) => scrollObserver.observe(el));
+     }
 })();
 
 (function () {
-  const testimonialObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        testimonialObserver.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1
-  });
+     const testimonialObserver = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+               if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    testimonialObserver.unobserve(entry.target);
+               }
+          });
+     }, {
+          threshold: 0.1
+     });
 
-  if (document.querySelectorAll('.animate-on-scroll')) {
-    document.querySelectorAll('.animate-on-scroll').forEach(el => testimonialObserver.observe(el));
-  }
+     if (document.querySelectorAll('.animate-on-scroll')) {
+          document.querySelectorAll('.animate-on-scroll').forEach(el => testimonialObserver.observe(el));
+     }
 })();
 
 // Cursor
@@ -102,215 +102,185 @@ var crsr = document.querySelector("#cursor");
 var blur = document.querySelector("#cursorblur");
 
 if (crsr && blur) {
-  document.addEventListener("mousemove", function (dets) {
-    crsr.style.left = dets.x + "px";
-    crsr.style.top = dets.y + "px";
-    blur.style.left = dets.x - 250 + "px";
-    blur.style.top = dets.y - 250 + "px";
-  });
+     document.addEventListener("mousemove", function (dets) {
+          crsr.style.left = dets.x + "px";
+          crsr.style.top = dets.y + "px";
+          blur.style.left = dets.x - 250 + "px";
+          blur.style.top = dets.y - 250 + "px";
+     });
 }
 
 
 function showAlert(message, type = "success") {
-  // Create alert box if it doesn't exist
-  let alertBox = document.getElementById("alertBox");
-  if (!alertBox) {
-    alertBox = document.createElement("div");
-    alertBox.id = "alertBox";
-    alertBox.style.cssText = `
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 15px 20px;
-      border-radius: 5px;
-      color: white;
-      z-index: 10000;
-      display: none;
-      max-width: 300px;
-    `;
-    document.body.appendChild(alertBox);
-  }
-  
-  alertBox.innerText = message;
-  alertBox.className = `alert ${type}`;
-  alertBox.style.display = "block";
-  alertBox.style.backgroundColor = type === "success" ? "#4CAF50" : 
-                                  type === "info" ? "#2196F3" : "#f44336";
-  
-  setTimeout(() => {
-    alertBox.style.display = "none";
-  }, 4000);
+     let alertBox = document.getElementById("alertBox");
+     if (!alertBox) {
+          alertBox = document.createElement("div");
+          alertBox.id = "alertBox";
+          alertBox.style.cssText = `
+               position: fixed;
+               top: 20px;
+               right: 20px;
+               padding: 15px 20px;
+               border-radius: 5px;
+               color: white;
+               z-index: 10000;
+               display: none;
+               max-width: 300px;
+          `;
+          document.body.appendChild(alertBox);
+     }
+     
+     alertBox.innerText = message;
+     alertBox.className = `alert ${type}`;
+     alertBox.style.display = "block";
+     alertBox.style.backgroundColor = type === "success" ? "#4CAF50" : type === "info" ? "#2196F3" : "#f44336";
+     
+     setTimeout(() => {
+          alertBox.style.display = "none";
+     }, 4000);
 }
 
 // SHOW TALENTS 
-
 const grid = document.getElementById("profileGrid");
 const paginationDiv = document.getElementById("pagination");
 const API_URL = "https://portpholiohub.onrender.com/recruiter/profiles";
 
 async function fetchProfiles(page = 1) {
-  try {
-    const res = await fetch(`${API_URL}?page=${page}`);
-    const data = await res.json();
+     try {
+          const res = await fetch(`${API_URL}?page=${page}`);
+          const data = await res.json();
 
-    renderProfiles(data.profiles);
-    renderPagination(data.totalPages, data.currentPage);
-  } catch (err) {
-    console.error("❌ Error fetching profiles:", err);
-  }
+          renderProfiles(data.profiles);
+          renderPagination(data.totalPages, data.currentPage);
+     } catch (err) {
+          console.error("❌ Error fetching profiles:", err);
+     }
 }
 
 function renderProfiles(profiles) {
-  grid.innerHTML = ""; // clear old profiles
-    const fragment = document.createDocumentFragment(); 
+     grid.innerHTML = ""; // clear old profiles
+          const fragment = document.createDocumentFragment(); 
 
-  profiles.forEach(profile => {
-    const card = document.createElement("div");
-    card.classList.add("card");
+     profiles.forEach(profile => {
+          const card = document.createElement("div");
+          card.classList.add("card");
 
-    card.innerHTML = `
-      <div class="card-header">
-        <img src="${profile.photo || 'default-avatar.png'}" alt="Profile" class="profile-pic">
-        <h3>${profile.fullName || "Unknown"}</h3>
-      </div>
-      <p>${profile.role || "Role Not Provided"} | ${profile.city || "Location"} |</p>
-      <p>${profile.aboutMe || ""}</p>
-      <div class="skills">
-        ${profile.skills?.map(skill => `<div class="skill">${skill.name}</div>`).join("")}
-      </div>
-      <div class="portfolio">
-        <button data-user-id="${profile._id}" class="portfolio-btn protected-link" >View Portfolio</button>
-      </div>
-    `;
-        fragment.appendChild(card); 
-  });
-    grid.appendChild(fragment); 
+          card.innerHTML = `
+               <div class="card-header">
+                    <img src="${profile.photo || '/resources/default-avatar.png'}" alt="Profile" class="profile-pic">
+                    <h3>${profile.fullName || "Unknown"}</h3>
+               </div>
+               <p>${profile.role || "Role Not Provided"} | ${profile.city || "Location"}</p>
+               <p>${profile.aboutMe || "No bio available."}</p>
+               <div class="skills">
+                    ${profile.skills?.map(skill => `<div class="skill">${skill.name}</div>`).join("") || "No skills listed."}
+               </div>
+               <div class="portfolio">
+                    <button data-portfolio-id="${profile._id}" class="portfolio-btn protected-link">View Portfolio</button>
+               </div>
+          `;
+          fragment.appendChild(card); 
+     });
+     grid.appendChild(fragment); 
 }
+
 
 grid.addEventListener('click', function(event) {
-  if (event.target.classList.contains('portfolio-btn')) {
-    
-    const token = localStorage.getItem('recruiterToken');
+     if (event.target.classList.contains('portfolio-btn')) {
+          const token = localStorage.getItem('jwtToken');
+          if (!token) {
+               showAlert("Login first to access this feature", "error");
+               return; 
+          }
 
-    if (!token) {
-      showAlert("Login first to access this feature", "error");
-      return; 
-    }
-
-    const userId = event.target.dataset.userId;
-    if (userId) {
-      viewPortfolio(userId);
-    }
-  }
+          const portfolioId = event.target.dataset.portfolioId;
+          if (portfolioId) {
+               // Corrected the key to be more descriptive
+               window.location.href = `/portfolio-viewer/portfolio-viewer.html?portfolioId=${portfolioId}`;
+          }
+     }
 });
-
-function viewPortfolio(id) {
-  window.location.href = `/portfolio-viewer.html?userId=${id}`;
-}
 
 
 function renderPagination(totalPages, currentPage) {
-  paginationDiv.innerHTML = "";
+     paginationDiv.innerHTML = "";
+     for (let i = 1; i <= totalPages; i++) {
+          const pageLink = document.createElement("a");
+          pageLink.href = "#";
+          pageLink.textContent = i;
+          if (i === currentPage) pageLink.classList.add("active");
 
-  for (let i = 1; i <= totalPages; i++) {
-    const pageLink = document.createElement("a");
-    pageLink.href = "#";
-    pageLink.textContent = i;
-    if (i === currentPage) pageLink.classList.add("active");
+          pageLink.addEventListener("click", (e) => {
+               e.preventDefault();
+               fetchProfiles(i);
+          });
+          paginationDiv.appendChild(pageLink);
+     }
 
-    pageLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      fetchProfiles(i);
-    });
-
-    paginationDiv.appendChild(pageLink);
-  }
-
-  // Next button
-  if (currentPage < totalPages) {
-    const next = document.createElement("a");
-    next.href = "#";
-    next.innerHTML = `<i class="ri-arrow-drop-right-line"></i>`;
-    next.addEventListener("click", (e) => {
-      e.preventDefault();
-      fetchProfiles(currentPage + 1);
-    });
-    paginationDiv.appendChild(next);
-  }
+     if (currentPage < totalPages) {
+          const next = document.createElement("a");
+          next.href = "#";
+          next.innerHTML = `<i class="ri-arrow-drop-right-line"></i>`;
+          next.addEventListener("click", (e) => {
+               e.preventDefault();
+               fetchProfiles(currentPage + 1);
+          });
+          paginationDiv.appendChild(next);
+     }
 }
-
 
 // Load first page
 fetchProfiles(1);
 
+
 // =======================================================
-// ---------------------- LOGOUT ------------------------
+// ----------- NEW: AUTHENTICATION & LOGOUT LOGIC --------
 // =======================================================
 
 document.addEventListener("DOMContentLoaded", () => {
-    // Get the HTML elements
-    const authLinks = document.getElementById("auth-links");
-    const logoutBtn = document.getElementById("logout-btn");
-    
-    const token = localStorage.getItem('recruiterToken');
+          const authLinks = document.getElementById("auth-links");
+          const logoutBtn = document.getElementById("logout-btn");
+          const token = localStorage.getItem('jwtToken');
 
-    if (token) {
-        fetch("https://portpholiohub.onrender.com/recruiter/me", {
-            method: "GET",
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        })
-        .then(res => {
-            if (!res.ok) {
-                throw new Error('Token validation failed');
-            }
-            return res.json();
-        })
-        .then(data => {
-            if (data.authenticated) {
-                authLinks.style.display = "none";
+          if (token) {
+                    fetch("https://portpholiohub.onrender.com/recruiter/me", {
+                              method: "GET",
+                              headers: {
+                                        'Authorization': `Bearer ${token}`
+                              }
+                    })
+                    .then(res => {
+                              if (!res.ok) {
+                                        localStorage.removeItem('jwtToken');
+                                        throw new Error('Token validation failed. Logging out.');
+                              }
+                              return res.json();
+                    })
+                    .then(data => {
+                              if (data.authenticated) {
+                                        authLinks.style.display = "none";
                 logoutBtn.style.display = "inline-block";
-            }
-        })
-        .catch(err => {
-           
-            console.error("Authentication check failed:", err);
-           
-            localStorage.removeItem('recruiterToken');
-            
-            authLinks.style.display = "inline-block";
-            logoutBtn.style.display = "none";
-        });
-    } else {
-        // If no token is found, the user is logged out
-        authLinks.style.display = "inline-block";
-        logoutBtn.style.display = "none";
-    }
- // 2. HANDLE LOGOUT BUTTON CLICK
-  logoutBtn.addEventListener("click", () => {
-        if (window.confirm("Do you want to logout from PortfolioHub?")) {
+                              } else {
+                                        localStorage.removeItem('jwtToken');
+                                        authLinks.style.display = "inline-block";
+                                        logoutBtn.style.display = "none";
+                              }
+                    })
+                    .catch(err => {
+                              console.error("Authentication check failed:", err.message);
+                              authLinks.style.display = "inline-block";
+                              logoutBtn.style.display = "none";
+                    });
+          } else {
+                    authLinks.style.display = "inline-block";
+                    logoutBtn.style.display = "none";
+          }
 
-    localStorage.removeItem('jwtToken');
-        window.location.href = "index.html";
-        }
-  });
-    // Handle the logout button click
-    logoutBtn.addEventListener("click", (e) => {
-        e.preventDefault(); // Prevent the <a> tag from navigating
-      if (window.confirm("Do you want to logout from PortfolioHub?")) 
-      {     
-        localStorage.removeItem('recruiterToken');
-        window.location.href = "recruiter-Index.html";
-      }
-        
-    });
-
-      
-  // ==========================================================
-  //  IF USER IS NOT LOGIN, POPUP SHOW
-  // ==========================================================
-  
-  
-
+          logoutBtn.addEventListener("click", (e) => {
+                    e.preventDefault(); 
+                    if (window.confirm("Do you want to logout from PortfolioHub?")) {
+                             localStorage.removeItem('jwtToken');
+                              window.location.reload();
+                    }
+          });
 });
