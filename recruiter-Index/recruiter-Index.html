@@ -439,7 +439,7 @@
 
   protectedLinks.forEach(link => {
     link.addEventListener('click', function(event) {
-const token = localStorage.getItem('recruiterToken');    
+const token = localStorage.getItem('jwtToken');    
   if (!token) {
         event.preventDefault();
         
@@ -453,4 +453,5 @@ const token = localStorage.getItem('recruiterToken');
    
 </body>
 </html>
+
 
