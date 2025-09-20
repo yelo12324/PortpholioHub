@@ -319,53 +319,7 @@ function initCharts(jobDataByMonth = [], applicantStatusCounts = { accepted: 0, 
   }
 }
 
-// function initCharts(jobDataByMonth = [],  applicantStatusCounts = { accepted: 0, rejected: 0, underReview: 0 }) 
-// { 
-//     if (myBarChart) myBarChart.destroy();
-//   if (myPieChart) myPieChart.destroy();
-//   // Default to an empty array
-//   const barCtx = document.getElementById('barChart')?.getContext('2d');
-//   const maxDataValue = Math.max(...jobDataByMonth);
-//   const chartMax = maxDataValue > 0 ? maxDataValue + 3 : 5;
-//   if (barCtx) {
-//     new Chart(barCtx, {
-//       type: 'bar',
-//       data: {
-//         labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-//         datasets: [{
-//           data: jobDataByMonth,
-//           backgroundColor: '#2f5fc1',
-//           borderRadius: 6
-//         }]
-//       },
-//       options: {
-//         plugins: { legend: { display: false } },
-//         scales: {   y: { beginAtZero: true, ticks: {stepSize: 1}, max: chartMax} },
-//         maintainAspectRatio: true,
-//         responsive: true
-//       }
-//     });
-//   }
-//   const pieCtx = document.getElementById('pieChart')?.getContext('2d');
-//   if (pieCtx) {
-//     new Chart(pieCtx, {
-//       type: 'pie',
-//       data: {
-//         labels: ['Accepted', 'Rejected'],
-//         datasets: [{ data: [60, 30], backgroundColor: ['#2f5fc1', '#87b6ff'] }]
-//       },
-//       options: {
-//         plugins: { legend: { display: false } },
-//         maintainAspectRatio: true,
-//         responsive: true
-//       }
-//     });
-//   }
-// }
-
-// =================================================================
-// ========== JOB POSTS BY MONTH FOR DASHBOARD CHART ==========
-// =================================================================
+// ===== DASHBOARD INITIALIZATION =====
 async function initializeDashboard() {
   const token = localStorage.getItem("jwtToken"); // ✅ Standardized token
   if (!token) {
@@ -971,3 +925,5 @@ if (e.target.classList.contains("edit-btn")) {
 }
 
 });
+
+
