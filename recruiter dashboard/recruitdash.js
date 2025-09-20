@@ -1,6 +1,3 @@
-// ===== GLOBAL VARIABLES =====
-let myBarChart;
-let myPieChart;
 // ===== PAGES (templates) =====
 const pages = {
   dashboard: `
@@ -258,7 +255,7 @@ const pages = {
 
    function loadPage(page) {
   const main = document.getElementById("main-content");
-  main.innerHTML = pages[page] || "<p>Loading...</p>";
+  main.innerHTML = pages[page] || "<p>Page not found</p>";
 
   if (page === "dashboard") initializeDashboard();
   if (page === "all-applicants") loadApplicants();
@@ -267,108 +264,82 @@ const pages = {
 
 // ===== CHARTS =====
 // ===== CHARTS =====
-
-
-// ==================================================
-// ===== CHARTS INITIALIZATION & UPDATE LOGIC =====
-// ==================================================
-// changed
-function initCharts(jobDataByMonth = [], applicantStatusCounts = { accepted: 0, rejected: 0, underReview: 0 }) {
-  // Destroy existing charts before creating new ones to prevent conflicts
-  if (myBarChart) myBarChart.destroy();
-  if (myPieChart) myPieChart.destroy();
-
-  // --- Bar Chart for Job Postings ---
+function initCharts(jobDataByMonth = []) { // Default to an empty array
   const barCtx = document.getElementById('barChart')?.getContext('2d');
+  const maxDataValue = Math.max(...jobDataByMonth);
+  const chartMax = maxDataValue > 0 ? maxDataValue + 3 : 5;
   if (barCtx) {
-    const maxDataValue = Math.max(...jobDataByMonth, 0);
-    myBarChart = new Chart(barCtx, {
+    new Chart(barCtx, {
       type: 'bar',
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        datasets: [{ data: jobDataByMonth, backgroundColor: '#2f5fc1', borderRadius: 6 }]
-      },
-      options: {
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true, ticks: { stepSize: 1 }, max: maxDataValue + 2 } },
-        responsive: true,
-        // maintainAspectRatio: false
-      }
-    });
-  }
-
-  // --- Pie Chart for Applicant Statuses ---
-  const pieCtx = document.getElementById('pieChart')?.getContext('2d');
-  if (pieCtx) {
-    myPieChart = new Chart(pieCtx, {
-      type: 'pie',
-      data: {
-        labels: ['Accepted', 'Rejected', 'In Review'],
+        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         datasets: [{
-          // ✅ Use real data for the pie chart
-          data: [applicantStatusCounts.accepted, applicantStatusCounts.rejected, applicantStatusCounts.underReview],
-          backgroundColor: ['#2f5fc1', '#87b6ff', '#dbeaff']
+          data: jobDataByMonth,
+          backgroundColor: '#2f5fc1',
+          borderRadius: 6
         }]
       },
       options: {
-        plugins: { legend: { position: 'bottom' } },
-        responsive: true,
-        // maintainAspectRatio: false
+        plugins: { legend: { display: false } },
+        scales: {   y: { beginAtZero: true, ticks: {stepSize: 1}, max: chartMax} },
+        maintainAspectRatio: true,
+        responsive: true
+      }
+    });
+  }
+  const pieCtx = document.getElementById('pieChart')?.getContext('2d');
+  if (pieCtx) {
+    new Chart(pieCtx, {
+      type: 'pie',
+      data: {
+        labels: ['Accepted', 'Rejected'],
+        datasets: [{ data: [60, 30], backgroundColor: ['#2f5fc1', '#87b6ff'] }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        maintainAspectRatio: true,
+        responsive: true
       }
     });
   }
 }
 
-// ===== DASHBOARD INITIALIZATION =====
+// =================================================================
+// ========== JOB POSTS BY MONTH FOR DASHBOARD CHART ==========
+// =================================================================
 async function initializeDashboard() {
-  const token = localStorage.getItem("jwtToken"); // ✅ Standardized token
-  if (!token) {
-    console.error("No token found. Cannot load dashboard.");
-
-    initCharts([], { accepted: 0, rejected: 0, underReview: 0 });
-    return;
-  }
-
   try {
-    // --- Fetch Jobs for Bar Chart and Stats ---
-    const jobsRes = await fetch("https://portpholiohub.onrender.com/recruiter/jobs", {
+    const token = localStorage.getItem("recruiterToken");
+    const res = await fetch("https://portpholiohub.onrender.com/recruiter/jobs", {
       headers: { "Authorization": `Bearer ${token}` }
     });
-    if (!jobsRes.ok) throw new Error("Failed to fetch jobs.");
-    const jobs = await jobsRes.json();
+
+    if (!res.ok) {
+      throw new Error("Failed to fetch jobs for the dashboard.");
+    }
+    const jobs = await res.json();
 
     const monthlyJobCounts = new Array(12).fill(0);
+    let totalApplicants = 0;
+
     jobs.forEach(job => {
-      const month = new Date(job.createdAt).getMonth();
+      const postDate = new Date(job.createdAt);
+      const month = postDate.getMonth();
       monthlyJobCounts[month]++;
+
+      totalApplicants += Array.isArray(job.applicants) ? job.applicants.length : 0;
     });
 
-    // --- Fetch Applicants for Pie Chart and Stats ---
-    const applicantsRes = await fetch("https://portpholiohub.onrender.com/recruiter/applicants", {
-      headers: { "Authorization": `Bearer ${token}` }
-    });
-    if (!applicantsRes.ok) throw new Error("Failed to fetch applicants.");
-    const applications = await applicantsRes.json();
-    
-    // --- Process Applicant Data for Stats ---
-    let statusCounts = { accepted: 0, rejected: 0, underReview: 0 };
-    applications.forEach(app => {
-        if (app.status === 'Accepted') statusCounts.accepted++;
-        else if (app.status === 'Rejected') statusCounts.rejected++;
-        else statusCounts.underReview++;
-    });
+    const applicationsEl = document.querySelector('.stat-number.applications');
+    const jobsEl = document.querySelector('.stat-number.jobs');
+    if (applicationsEl) applicationsEl.textContent = totalApplicants;
+    if (jobsEl) jobsEl.textContent = jobs.length;
 
-    // --- Update UI Stat Cards ---
-    document.querySelector('.stat-number.applications').textContent = applications.length;
-    document.querySelector('.stat-number.jobs').textContent = jobs.length;
-
-    // --- Initialize/Update Charts with Live Data ---
-    initCharts(monthlyJobCounts, statusCounts);
+    initCharts(monthlyJobCounts);
 
   } catch (error) {
     console.error("Error initializing dashboard:", error);
-    // Initialize with empty data on error
-    initCharts([], { accepted: 0, rejected: 0, underReview: 0 });
+    initCharts([]); 
   }
 }
 
@@ -384,7 +355,6 @@ navLinks.forEach(link => {
     if (window.matchMedia('(max-width: 768px)').matches) document.body.classList.remove('sidebar-open');
   });
 });
-
 
 // ===== MOBILE TOGGLE =====
 const hamburger = document.getElementById('hamburger');
@@ -448,7 +418,7 @@ async function loadApplicants() {
     });
 
     if (!res.ok) {
-      throw new Error("No Applicants Applied To Your Job.");
+      throw new Error("Failed to fetch applicants.");
     }
     
     const applications = await res.json();
