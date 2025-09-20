@@ -70,31 +70,15 @@
     .stat-icon { width:56px; height:56px; border-radius:12px; display:grid; place-items:center; background:linear-gradient(180deg,#eef5ff,#f3f8ff); font-size:20px; color:var(--accent-blue); }
     .stat-number { font-weight:800; font-size:26px; color:var(--accent-blue); }
     .stat-label { font-size:13px; color:var(--muted); font-weight:600; }
-/* =========================================================================================================  */
-    /* Content Grid */
+
     /* Content Grid */
     .content-grid { margin-top:20px; display:grid; grid-template-columns: 1fr 320px; gap:24px; }
-    .chart-card {
-       margin-top: 22px;
-        background: var(--card-white);
-         border-radius: 12px;
-          padding: 18px;
-           box-shadow: var(--soft-shadow);
-             height: 400px; /* You can adjust this value */
-  width: 100%;
-           }
+    .chart-card { margin-top: 22px; background: var(--card-white); border-radius: 12px; padding: 18px; box-shadow: var(--soft-shadow); }
     .right-col { display:flex; flex-direction:column; gap:18px; }
     .progress-card { background:var(--card-white); border-radius:12px; padding:18px; box-shadow: var(--soft-shadow); }
     .progress-title { font-weight:700; font-size:16px; }
     .progress-sub { font-size:13px; color:var(--muted); }
     .progress-value { font-size:28px; font-weight:800; color:var(--accent-blue); margin-top:6px; }
-.progress-card:has(canvas) {
-    height: 350px; /* You can adjust this value */
-    width: 100%;
-}
-    .chart-card,.progress-card{ position: relative;}
-
-/* =========================================================================================================  */
 
     /* Job table */
     .job-table { width:100%; border-collapse:collapse; font-size:14px; margin-top:12px; min-width:680px; }
@@ -243,4 +227,3 @@
       .footer-logo-circle { width:40px; height:40px; font-size:18px; }
       .footer-logo-circle::after { width:48px; height:48px; }
     }
-
